@@ -1,0 +1,12 @@
+{
+  "schema": "meritlink.recommendation.v1",
+  "student": {
+    "name": "Alice Uwase",
+    "email": "a.uwase+mws40dk5@alustudent.com"
+  },
+  "activity": "ALU Debate Club - Term 1",
+  "organiser": "ALU Debate Club",
+  "basedOnRecord": 3,
+  "text": "Alice chaired four debates this term and mentored two first-year members through their first tournament.",
+  "issuedOn": "2026-11-22"
+}

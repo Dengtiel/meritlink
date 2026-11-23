@@ -1,0 +1,35 @@
+﻿
+> meritlink@1.0.0 interact:sepolia
+> hardhat run scripts/interact.js --network sepolia
+
+MeritLink interaction demo on sepolia
+Registry : 0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a
+Wallet   : 0xb47Cc6142979e5d781e6A0A7c71506a7D8A52AB8
+
+----------------------------------------------------------------------
+STEP 1: Administrator approves an activity organiser
+----------------------------------------------------------------------
+  ✔ addOrganiser(ALU Debate Club)
+    tx: 0xfc4831f684bcc664c523c905e35384bb51c5982526e4f597a4910183fd52e6fa  block: 12190159  gas: 244490
+    https://sepolia.etherscan.io/tx/0xfc4831f684bcc664c523c905e35384bb51c5982526e4f597a4910183fd52e6fa
+  organiserName = "ALU Debate Club"
+
+----------------------------------------------------------------------
+STEP 2: Organiser creates an activity with a participation rule
+----------------------------------------------------------------------
+  ✔ createActivity("ALU Debate Club - Term 1", Leadership, 10 sessions, min 8, >=45 min)
+    tx: 0xc5a7a26ae1b9582b3aeaeff2789f9439912b15b7bf99c9cfb3fd5c85f26e91ec  block: 12190160  gas: 467752
+    https://sepolia.etherscan.io/tx/0xc5a7a26ae1b9582b3aeaeff2789f9439912b15b7bf99c9cfb3fd5c85f26e91ec
+npm : ProviderError: execution reverted
+At line:1 char:342
++ ... tion 'C:\Blockchain_summative'; npm run interact:sepolia 2>&1 | Tee-O ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ProviderError: execution reverted:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    at HttpProvider.request (C:\Blockchain_summative\node_modules\hardhat\src\internal\core\providers\http.ts:116:21)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at staticCallResult (C:\Blockchain_summative\node_modules\ethers\src.ts\contract\contract.ts:337:22)
+    at staticCall (C:\Blockchain_summative\node_modules\ethers\src.ts\contract\contract.ts:303:24)
+    at Proxy.getActivity (C:\Blockchain_summative\node_modules\ethers\src.ts\contract\contract.ts:351:41)
+    at main (C:\Blockchain_summative\scripts\interact.js:111:13)

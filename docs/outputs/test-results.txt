@@ -1,0 +1,57 @@
+﻿
+
+  MeritLinkRegistry
+    1. Deployment and administration
+      √ TC-01: deployer-supplied admin holds DEFAULT_ADMIN_ROLE (652ms)
+      √ TC-02: deployment with zero admin address reverts
+      √ TC-03: admin can add an organiser with a public name
+      √ TC-04: non-admin cannot add an organiser
+      √ TC-05: addOrganiser rejects zero address and empty name
+      √ TC-06: removed organiser can no longer create activities or issue (46ms)
+    2. Activities and participation rules
+      √ TC-07: organiser creates an activity and the rule is stored on-chain
+      √ TC-08: non-organiser cannot create an activity
+      √ TC-09: invalid rules are rejected (45ms)
+      √ TC-10: only the activity's own organiser can close it, and closed activities cannot issue
+      √ TC-11: reading an unknown activity reverts
+    3. Automatic rule-based issuance
+      √ TC-12: record is issued when the student meets the rule (8 of 10, >=45 min) (50ms)
+      √ TC-13: record is withheld when too few sessions were attended
+      √ TC-14: sessions shorter than the minimum duration are excluded
+      √ TC-15: boundary - exactly 45 minutes counts, exactly 8 sessions is enough
+      √ TC-16: more sessions than the activity has are rejected (fabricated attendance)
+      √ TC-17: a student cannot receive two participation records for the same activity (42ms)
+      √ TC-18: the same document hash cannot be anchored twice
+      √ TC-19: empty student reference or empty hash are rejected
+      √ TC-20: an organiser cannot issue records for another organiser's activity
+      √ TC-21: issuing for a non-existent activity reverts
+      √ TC-22: no personal data is stored on-chain (only hashes and a pseudonymous ref)
+    4. Recommendations
+      √ TC-23: organiser recommends a student who met the rule
+      √ TC-24: recommendation without a participation record is impossible
+      √ TC-25: another organiser cannot recommend a student from someone else's activity
+      √ TC-26: only one recommendation per participation record; cannot recommend a recommendation
+      √ TC-27: cannot recommend a student whose participation record was revoked
+      √ TC-28: revoking the participation record invalidates its recommendation (ParentRevoked)
+    5. Verification (tamper detection)
+      √ TC-29: verifier confirms an untouched record is Valid (no wallet / no gas)
+      √ TC-30: an altered record is detected (HashMismatch)
+      √ TC-31: field order does not change the hash (canonical JSON)
+      √ TC-32: unknown record id returns NotFound
+      √ TC-33: verifyByHash finds the record from the document alone
+      √ TC-34: getStudentRecords lists a student's records for the profile page (57ms)
+      √ TC-35: getRecord on an unknown id reverts
+    6. Revocation
+      √ TC-36: issuer revokes a record; verification then reports Revoked
+      √ TC-37: admin can revoke any record
+      √ TC-38: other organisers and outsiders cannot revoke
+      √ TC-39: cannot revoke twice or revoke a missing record
+    7. Emergency pause
+      √ TC-40: pause blocks issuance and activity creation but not verification
+      √ TC-41: only admin can pause/unpause
+    8. End-to-end pilot scenario
+      √ TC-42: full flow - setup, check-ins, auto issuance, recommendation, verification, tamper, revoke
+
+
+  42 passing (1s)
+

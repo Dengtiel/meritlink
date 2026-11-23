@@ -1,0 +1,14 @@
+﻿Compiled 7 Solidity files successfully (evm target: cancun).
+==============================================
+ MeritLink - deploying MeritLinkRegistry
+==============================================
+Network  : localhost (chainId 31337)
+Deployer : 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Balance  : 10000.0 ETH
+Tx hash  : 0x8980ffc16c3eab8f7d75aea7b5a1d46fac49b24601febef4ab4971f5e03f42ea
+Waiting for confirmation...
+
+MeritLinkRegistry deployed at: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+Block    : 1
+Gas used : 2003884
+Saved    : deployments/localhost.json

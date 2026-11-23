@@ -1,0 +1,68 @@
+﻿
+> meritlink@1.0.0 interact:sepolia
+> hardhat run scripts/interact.js --network sepolia
+
+MeritLink interaction demo on sepolia
+Registry : 0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a
+Wallet   : 0xb47Cc6142979e5d781e6A0A7c71506a7D8A52AB8
+
+----------------------------------------------------------------------
+STEP 1: Administrator approves an activity organiser
+----------------------------------------------------------------------
+  (organiser already approved, skipping)
+  organiserName = "ALU Debate Club"
+
+----------------------------------------------------------------------
+STEP 2: Organiser creates an activity with a participation rule
+----------------------------------------------------------------------
+  ✔ createActivity("ALU Debate Club - Term 1", Leadership, 10 sessions, min 8, >=45 min)
+    tx: 0xb1114081acc82cbd27120528f0701560b04652d367f67d52681d7caeebf6e182  block: 12190167  gas: 369832
+    https://sepolia.etherscan.io/tx/0xb1114081acc82cbd27120528f0701560b04652d367f67d52681d7caeebf6e182
+  activityId=2  category=Leadership  rule=8/10 sessions >= 45 min
+
+----------------------------------------------------------------------
+STEP 3: Check-in data from rotating QR scans (simulated, validated off-chain)
+----------------------------------------------------------------------
+  Alice Uwase  minutes per session: [60, 50, 47, 90, 45, 55, 61, 80, 30]  -> 8 qualifying
+  Bob Mugisha  minutes per session: [60, 60, 60, 60, 60, 60, 60, 44, 40]  -> 7 qualifying
+
+----------------------------------------------------------------------
+STEP 4: Automatic issuance: contract applies the rule on-chain
+----------------------------------------------------------------------
+  ✔ issueRecord for Alice Uwase
+    tx: 0xfccad4396acf98a1381a8119fc4bc9e53279f16a4bd3b2789703a8d0371a64b6  block: 12190169  gas: 1138696
+    https://sepolia.etherscan.io/tx/0xfccad4396acf98a1381a8119fc4bc9e53279f16a4bd3b2789703a8d0371a64b6
+    recordId=1  sha256=0xa7edf4f96b15fa976bb12e07f154e43a47affc57e38b7db1d8604989b6b457a2
+  ✘ Bob Mugisha: record WITHHELD by contract -> RuleNotMet(7, 8)
+
+----------------------------------------------------------------------
+STEP 5: Organiser issues a one-click recommendation for an eligible student
+----------------------------------------------------------------------
+  ✔ issueRecommendation for Alice
+    tx: 0x75547999af0ebfe2dba5452a5fed9c33555032c2d1d4145463b81ddd42ed3c75  block: 12190171  gas: 1049763
+    https://sepolia.etherscan.io/tx/0x75547999af0ebfe2dba5452a5fed9c33555032c2d1d4145463b81ddd42ed3c75
+    recommendationId=2  sha256=0x07ef03a47a3ed7cdc16107d3c078f11d1de7d59738e467366da2ff55b666fd63
+
+----------------------------------------------------------------------
+STEP 6: External verifier checks the records (read-only, free, no wallet)
+----------------------------------------------------------------------
+  Alice participation record #1 (original)     -> Valid
+  Alice recommendation #2 (original)           -> Valid
+  Alice record #1 (one session edited)         -> HashMismatch
+  Alice record #1 (name changed)               -> HashMismatch
+  verifyByHash(original document)              -> recordId=1 Valid
+  Alice's profile record ids: [1, 2]
+  Saved record files for the web verifier in demo-records/sepolia/
+
+----------------------------------------------------------------------
+STEP 7: Revocation: organiser withdraws the participation record
+----------------------------------------------------------------------
+  ✔ revokeRecord(#1, "Demo revocation")
+    tx: 0x3c546d2507bba1af28f8695349bf3c7a1c89e32443bea2d27b05e3cb659ee890  block: 12190173  gas: 36106
+    https://sepolia.etherscan.io/tx/0x3c546d2507bba1af28f8695349bf3c7a1c89e32443bea2d27b05e3cb659ee890
+  Alice participation record #1                -> Revoked
+  Alice recommendation #2 (depends on it)      -> ParentRevoked
+
+----------------------------------------------------------------------
+Done. activityCount=2 recordCount=2
+----------------------------------------------------------------------

@@ -1,0 +1,61 @@
+﻿MeritLink interaction demo on localhost
+Registry : 0x5FbDB2315678afecb367f032d93F642f64180aa3
+Wallet   : 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+
+----------------------------------------------------------------------
+STEP 1: Administrator approves an activity organiser
+----------------------------------------------------------------------
+  ✔ addOrganiser(ALU Debate Club)
+    tx: 0xf8c921ba7ea2d1395b2a705dc4ffd454e5e2a77241c4d34a8d86522f85fb808f  block: 2  gas: 74450
+  organiserName = "ALU Debate Club"
+
+----------------------------------------------------------------------
+STEP 2: Organiser creates an activity with a participation rule
+----------------------------------------------------------------------
+  ✔ createActivity("ALU Debate Club - Term 1", Leadership, 10 sessions, min 8, >=45 min)
+    tx: 0x4ebe40cfbb76d0e890e875b12f08540c53ed1fdf028e80942e334f877ac0b86b  block: 3  gas: 121672
+  activityId=1  category=Leadership  rule=8/10 sessions >= 45 min
+
+----------------------------------------------------------------------
+STEP 3: Check-in data from rotating QR scans (simulated, validated off-chain)
+----------------------------------------------------------------------
+  Alice Uwase  minutes per session: [60, 50, 47, 90, 45, 55, 61, 80, 30]  -> 8 qualifying
+  Bob Mugisha  minutes per session: [60, 60, 60, 60, 60, 60, 60, 44, 40]  -> 7 qualifying
+
+----------------------------------------------------------------------
+STEP 4: Automatic issuance: contract applies the rule on-chain
+----------------------------------------------------------------------
+  ✔ issueRecord for Alice Uwase
+    tx: 0x5b9cdef8ca26ae56b77698caa17ae7a95320b115c83720650a0b9e971f483490  block: 4  gas: 265008
+    recordId=1  sha256=0x9a8fa0c0eabf23f89e95d79e55ffdd1fa7d3e15f272539b80720a3174976efad
+  ✘ Bob Mugisha: record WITHHELD by contract -> RuleNotMet(7, 8)
+
+----------------------------------------------------------------------
+STEP 5: Organiser issues a one-click recommendation for an eligible student
+----------------------------------------------------------------------
+  ✔ issueRecommendation for Alice
+    tx: 0x0290c96e8b5ac447beb84d7351739b3054294df1a98de8d0deb37e456a50fa13  block: 5  gas: 249683
+    recommendationId=2  sha256=0x466314948a8590cd0d4bc3a05d3050d0205e3876a656481d0388a1da146d477c
+
+----------------------------------------------------------------------
+STEP 6: External verifier checks the records (read-only, free, no wallet)
+----------------------------------------------------------------------
+  Alice participation record #1 (original)     -> Valid
+  Alice recommendation #2 (original)           -> Valid
+  Alice record #1 (one session edited)         -> HashMismatch
+  Alice record #1 (name changed)               -> HashMismatch
+  verifyByHash(original document)              -> recordId=1 Valid
+  Alice's profile record ids: [1, 2]
+  Saved record files for the web verifier in demo-records/localhost/
+
+----------------------------------------------------------------------
+STEP 7: Revocation: organiser withdraws the participation record
+----------------------------------------------------------------------
+  ✔ revokeRecord(#1, "Demo revocation")
+    tx: 0x0a204b180e26e366ea2e22a8969eceeb5a57b70bef42ac365130ad44ab263fef  block: 6  gas: 34906
+  Alice participation record #1                -> Revoked
+  Alice recommendation #2 (depends on it)      -> ParentRevoked
+
+----------------------------------------------------------------------
+Done. activityCount=1 recordCount=2
+----------------------------------------------------------------------

@@ -1,0 +1,21 @@
+﻿
+> meritlink@1.0.0 deploy:sepolia
+> hardhat run scripts/deploy.js --network sepolia
+
+==============================================
+ MeritLink - deploying MeritLinkRegistry
+==============================================
+Network  : sepolia (chainId 11155111)
+Deployer : 0xb47Cc6142979e5d781e6A0A7c71506a7D8A52AB8
+Balance  : 2.460155838704184171 ETH
+Tx hash  : 0xde49be6d5f15f30139524898f025dfeeb94d44c139e413c43f72531e3c12ec7a
+Waiting for confirmation...
+
+MeritLinkRegistry deployed at: 0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a
+Block    : 12190149
+Gas used : 14061232
+Saved    : deployments/sepolia.json
+
+Etherscan: https://sepolia.etherscan.io/address/0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a
+Verify source with:
+  npx hardhat verify --network sepolia 0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a 0xb47Cc6142979e5d781e6A0A7c71506a7D8A52AB8

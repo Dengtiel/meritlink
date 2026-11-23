@@ -1,0 +1,14 @@
+﻿
+> MeritLinkRegistry.sol
+Compiled 7 Solidity files successfully (evm target: cancun).
+  MeritLinkRegistry
+      √ TC-34: getStudentRecords lists a student's records for the profile page
+------------------------|----------|----------|----------|----------|----------------|
+File                    |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+------------------------|----------|----------|----------|----------|----------------|
+  MeritLinkRegistry.sol |      100 |    97.83 |      100 |      100 |                |
+------------------------|----------|----------|----------|----------|----------------|
+All files               |      100 |    97.83 |      100 |      100 |                |
+------------------------|----------|----------|----------|----------|----------------|
+
+

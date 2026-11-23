@@ -1,0 +1,13 @@
+﻿
+> meritlink@1.0.0 verify:sepolia
+> node scripts/verify-etherscan.js
+
+Verifying 0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a (constructor admin 0xb47Cc6142979e5d781e6A0A7c71506a7D8A52AB8) on Sepolia Etherscan...
+Successfully submitted source code for contract
+contracts/MeritLinkRegistry.sol:MeritLinkRegistry at 0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract MeritLinkRegistry on the block explorer.
+https://sepolia.etherscan.io/address/0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a#code
+
+Source verified: https://sepolia.etherscan.io/address/0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a#code

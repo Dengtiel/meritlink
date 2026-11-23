@@ -1,0 +1,14 @@
+﻿
+> meritlink@1.0.0 demo-record:sepolia
+> hardhat run scripts/issue-demo.js --network sepolia
+
+Issued VALID participation record #3 and recommendation #4 (activity #3).
+Files: demo-records/sepolia/valid-record-3.json and valid-recommendation-4.json
+
+Drop either file on the Verify page, then click "Print certificate with QR code".
+
+Or open a certificate QR link directly:
+  record:         http://localhost:5173/#verify=sepolia.3.dZZBNSwNBEET_StNXO8vsuhvjnBQ9BhQ0J_HQznaSIfMRZmYTQtj_LhsDCp7rUbyqM7Ip9mDLCfUZDRfZxHRCjUvhXlLe2j0SBvaCGh-XK3iWLy4CT274ghm8S_JQI2Ea3IUoRUIPXMAJ5wILiGuoFWTJ2caQCYTNFtYx_TJtB96GoUjGkZAvDRyMTELX4FXS208D6o-5ok5Re0f3itqOuo7mNS0U3arPkdDmPEj_ElBjo5r5rK5nTYOEMW042Czp_w4kzGYrnlGjl2SLs2FX7TkVa-yei42hOkwjcxl6CWUSE8_WoUauhiNnufHH3Kp-1z2wG65YZaL_852zRmA1wTiO3w
+  recommendation: http://localhost:5173/#verify=sepolia.4.dZY_NasMwEIRfZdlrZRO7PwefWtpjoVCaB1hLm3iJJcFqlTSEvHtRW3rpdfiYb-aC5E2OYmec8Ol1Cy88kzE8r3WGDj5YIwzocKbC4S29s88acLp1KKXUFuGE42Z86IahG0d0mHVPSQrr_0J0WPzCkXDCyCq2Sjr0yj7HyCmQSU79semK1cDJcLogR5IVJ6S-nqjwTTyVu0043D_SWn-x3ueIDhNFbtJVPMO2wXh1aPxpf6lfSJQD7HJVCN_LCtgiBaw9pRQgcrLcGDtl2IkW685MCpHjzNpozXW_gC0s-gOA5arNnqzH6xc
+
+Profile link: http://localhost:5173/#profile=0x6372d59b2e1c78814dd763b71dde2e9f175c3f04f54071f7c079e182bac36526

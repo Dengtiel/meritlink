@@ -1,0 +1,10 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "contract": "MeritLinkRegistry",
+  "address": "0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a",
+  "admin": "0xb47Cc6142979e5d781e6A0A7c71506a7D8A52AB8",
+  "txHash": "0xde49be6d5f15f30139524898f025dfeeb94d44c139e413c43f72531e3c12ec7a",
+  "blockNumber": 12190149,
+  "deployedAt": "2026-11-22T17:21:37.325Z"
+}
