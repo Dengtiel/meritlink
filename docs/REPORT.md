@@ -6,6 +6,7 @@
 **Application area:** Education (with an identity-management component)  
 **Network:** Ethereum Sepolia testnet  
 **Source code:** https://github.com/dengtiel/meritlink  
+**Demo video:** https://youtu.be/A_odTNDVGL8  
 **Smart contract (Sepolia, source verified):** https://sepolia.etherscan.io/address/0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a#code  
 **Date:** November 2026  
 

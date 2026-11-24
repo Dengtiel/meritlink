@@ -19,6 +19,7 @@ Students build real skills running clubs, volunteering and mentoring, but the ev
 | Test cases | [`docs/TEST_CASES.md`](docs/TEST_CASES.md) |
 | Presentation | [`docs/MeritLink_Presentation.pptx`](docs/MeritLink_Presentation.pptx) |
 | Terminal evidence | [`docs/outputs/`](docs/outputs/) |
+| Demo video | https://youtu.be/A_odTNDVGL8 |
 | Sepolia contract | [`0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a`](https://sepolia.etherscan.io/address/0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a#code) (source verified) |
 
 ## Quick start

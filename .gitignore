@@ -8,3 +8,7 @@ typechain-types/
 deployments/localhost.json
 deployments/hardhat.json
 demo-records/localhost/
+
+# Office lock files and the submission bundle
+~$*
+submission/
