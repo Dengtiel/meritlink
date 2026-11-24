@@ -314,7 +314,7 @@ footer .contract-field a { font-weight: 700; font-size: .9rem; }
     <div class="net">
       <span class="dot" id="netDot" aria-hidden="true"></span>
       <label class="sr" for="net">Network</label>
-      <select id="net">
+      <select id="net" autocomplete="off">
         <option value="sepolia">Sepolia testnet</option>
         <option value="localhost">Local Hardhat</option>
       </select>
@@ -531,6 +531,14 @@ const { ethers } = window;
 const RPC = { sepolia: "https://ethereum-sepolia-rpc.publicnode.com", localhost: "http://127.0.0.1:8545" };
 const CHAIN = { sepolia: 11155111n, localhost: 31337n };
 const EXPLORER = { sepolia: "https://sepolia.etherscan.io", localhost: null };
+const NET_LABEL = { sepolia: "Sepolia testnet", localhost: "Local Hardhat (chain 31337)" };
+/* Used when MetaMask doesn't have the network yet (wallet_addEthereumChain). */
+const ADD_CHAIN = {
+  sepolia: { chainId: "0xaa36a7", chainName: "Sepolia", nativeCurrency: { name: "Sepolia ETH", symbol: "ETH", decimals: 18 },
+    rpcUrls: ["https://ethereum-sepolia-rpc.publicnode.com"], blockExplorerUrls: ["https://sepolia.etherscan.io"] },
+  localhost: { chainId: "0x7a69", chainName: "Hardhat Local", nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+    rpcUrls: ["http://127.0.0.1:8545"] },
+};
 const CATEGORY = ["Leadership", "Volunteering", "Student organisation", "Mentorship", "Community engagement"];
 const CATEGORY_KEY = ["Leadership", "Volunteering", "StudentOrganisation", "Mentorship", "CommunityEngagement"];
 const CATEGORY_ICON = ["i-lead", "i-vol", "i-org", "i-mentor", "i-comm"];
@@ -869,8 +877,19 @@ async function connect() {
     await bp.send("eth_requestAccounts", []);
     const { chainId } = await bp.getNetwork();
     if (chainId !== CHAIN[net()]) {
-      try { await bp.send("wallet_switchEthereumChain", [{ chainId: "0x" + CHAIN[net()].toString(16) }]); }
-      catch { return toast("bad", "Wrong network", `Switch your wallet to ${net() === "sepolia" ? "Sepolia" : "Hardhat (chain 31337)"}.`); }
+      const hex = "0x" + CHAIN[net()].toString(16);
+      try {
+        await bp.send("wallet_switchEthereumChain", [{ chainId: hex }]);
+      } catch (err) {
+        // 4902 = the wallet doesn't know this network yet: add it, then it switches automatically.
+        const code = err?.error?.code ?? err?.info?.error?.code ?? err?.code;
+        if (code !== 4902) {
+          return toast("bad", "Wallet is on a different network",
+            `This page is set to ${NET_LABEL[net()]}. Switch MetaMask to ${NET_LABEL[net()]}, or change the network menu at the top right.`, 8000);
+        }
+        try { await bp.send("wallet_addEthereumChain", [ADD_CHAIN[net()]]); }
+        catch { return toast("bad", "Network not added", `Add ${NET_LABEL[net()]} in MetaMask, then connect again.`, 8000); }
+      }
     }
     signer = await new ethers.BrowserProvider(window.ethereum).getSigner();
     const addr = await signer.getAddress();
@@ -887,6 +906,11 @@ async function connect() {
   } catch (e) { toast("bad", "Wallet not connected", e.shortMessage || e.message); }
 }
 $("connect").addEventListener("click", connect);
+// If the user changes account or network inside MetaMask, the old connection is no longer valid.
+if (window.ethereum?.on) {
+  window.ethereum.on("accountsChanged", () => { if (signer) { signer = null; resetWho(); toast("ok", "Wallet account changed", "Click Connect wallet again."); } });
+  window.ethereum.on("chainChanged", () => { if (signer) { signer = null; resetWho(); toast("ok", "Wallet network changed", "Click Connect wallet again."); } });
+}
 $("connect2").addEventListener("click", connect);
 
 /* ---------- transactions with readable errors ---------- */
