@@ -1,11 +1,13 @@
 # MeritLink: Developing a Blockchain-Based Solution for Verifying Student Extracurricular Achievements in Education
 
-**Student:** Deng Mayen Deng Akol
-**Programme:** BSc Software Engineering, African Leadership University
-**Course:** Blockchain, Summative Assessment
-**Application area:** Education (with an identity-management component)
-**Network:** Ethereum Sepolia testnet
-**Date:** November 2026
+**Student:** Deng Mayen Deng Akol  
+**Programme:** BSc Software Engineering, African Leadership University  
+**Course:** Blockchain, Summative Assessment  
+**Application area:** Education (with an identity-management component)  
+**Network:** Ethereum Sepolia testnet  
+**Source code:** https://github.com/dengtiel/meritlink  
+**Smart contract (Sepolia, source verified):** https://sepolia.etherscan.io/address/0xE1385041B4F6b3276c458Ecf5598DF77Ca867f3a#code  
+**Date:** November 2026  
 
 ---
 

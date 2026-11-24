@@ -4,6 +4,7 @@
 
 Summative assessment, Blockchain course, African Leadership University.
 Deng Mayen Deng Akol · Application area: **Education** (identity management)
+Repository: https://github.com/dengtiel/meritlink
 
 ---
 
